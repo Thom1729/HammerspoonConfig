@@ -3,13 +3,17 @@ local Window = dofile('window.lua')
 
 local event = require('hs.eventtap.event')
 
-function systemKey(key)
-    event.newSystemKeyEvent(key, true):post()
+function systemKey(key, flags)
+    local keydown = event.newSystemKeyEvent(key, true)
+    if flags then
+        keydown:setFlags(flags)
+    end
+    keydown:post()
     event.newSystemKeyEvent(key, false):post()
 end
 
 return {
-    escape = {hs.reload},
+    escape = { hs.reload },
 
     left  = {
         fnutils.partial(Window.move, { 0,   0, 0.5, 1 }),
@@ -26,15 +30,16 @@ return {
         Window.fullScreen,
     },
 
-    pageup   = {
-        fnutils.partial(systemKey, 'SOUND_UP'),
+    pageup = {
+        fnutils.partial(systemKey, 'SOUND_UP', { alt=true, shift=true }),
         fnutils.partial(systemKey, 'BRIGHTNESS_UP'),
     },
+
     pagedown = {
-        fnutils.partial(systemKey, 'SOUND_DOWN'),
+        fnutils.partial(systemKey, 'SOUND_DOWN', { alt=true, shift=true }),
         fnutils.partial(systemKey, 'BRIGHTNESS_DOWN'),
     },
 
-    f15      = {fnutils.partial(systemKey, 'MUTE')}, -- Pause
-    help     = {fnutils.partial(systemKey, 'PLAY')}, -- Insert
+    f15  = { fnutils.partial(systemKey, 'MUTE') }, -- Pause
+    help = { fnutils.partial(systemKey, 'PLAY') }, -- Insert
 }
