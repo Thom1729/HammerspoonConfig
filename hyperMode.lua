@@ -36,19 +36,26 @@ function HyperMode:handler (event)
         return true
     elseif self.active then
         if isDown then
-            self.tap:stop()
+            -- self.tap:stop()
             local command = self.commands(key, event:getFlags())
             if type(command) == 'function' then
                 command()
             elseif type(command) == 'string' then
-                eventtap.keyStrokes(command)
+                local downEvent = eventtap.event.newEvent()
+                downEvent:setType(eventtap.event.types.keyDown)
+                downEvent:setUnicodeString(command)
+
+                local upEvent = eventtap.event.newEvent()
+                upEvent:setType(eventtap.event.types.keyUp)
+
+                return true, { downEvent, upEvent }
             elseif command == nil then
                 -- pass
             else
                 alert('bad return value')
                 alert(inspect(command))
             end
-            self.tap:start()
+            -- self.tap:start()
         end
         return true
     else
