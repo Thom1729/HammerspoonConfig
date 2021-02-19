@@ -18,16 +18,21 @@ return {
     left  = {
         fnutils.partial(Window.move, { 0,   0, 0.5, 1 }),
         fnutils.partial(Window.moveScreen, 'toWest'),
+        fnutils.partial(Window.move, { 0,   0, 0.5, 1 }, true),
+        fnutils.partial(Window.moveScreen, 'toWest', true),
     },
 
     right = {
         fnutils.partial(Window.move, { 0.5, 0, 0.5, 1 }),
         fnutils.partial(Window.moveScreen, 'toEast'),
+        fnutils.partial(Window.move, { 0.5, 0, 0.5, 1 }, true),
+        fnutils.partial(Window.moveScreen, 'toEast', true),
     },
 
     up = {
         fnutils.partial(Window.move, { 0,   0,   1, 1 }),
         Window.fullScreen,
+        fnutils.partial(Window.move, { 0,   0,   1, 1 }, true),
     },
 
     pageup = {
