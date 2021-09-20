@@ -1,5 +1,5 @@
 local fnutils = require('hs.fnutils')
-local Window = dofile('window.lua')
+local Window = dofile('lib/window.lua')
 
 local event = require('hs.eventtap.event')
 

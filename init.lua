@@ -1,16 +1,16 @@
 local alert = require('hs.alert')
-local HyperMode = dofile('hyperMode.lua')
+local HyperMode = dofile('lib/hyperMode.lua')
 
-local commands = dofile('commands.lua')
-local characters = dofile('characters.lua')
+local commandMap = dofile('commandMap.lua')
+local characterMap = dofile('characterMap.lua')
 
 HyperMode.new('f18', function(key, flags)
     local tbl
 
     if flags.cmd then
-        tbl = commands
+        tbl = commandMap
     else
-        tbl = characters
+        tbl = characterMap
     end
 
     if tbl[key] == nil then
