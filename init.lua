@@ -27,4 +27,6 @@ HyperMode.new('f18', function(key, flags)
     end
 end)
 
+dofile('menu.lua')
+
 alert("Loaded Hammerspoon configuration.")

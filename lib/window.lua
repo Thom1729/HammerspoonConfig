@@ -6,7 +6,7 @@ exports = {}
 
 function getWindows (all)
     if all then
-        return application.frontmostApplication():allWindows()
+        return application.frontmostApplication():visibleWindows()
     else
         return { window.frontmostWindow() }
     end
