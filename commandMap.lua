@@ -1,50 +1,38 @@
-local fnutils = require('hs.fnutils')
-local Window = dofile('lib/window.lua')
-
-local event = require('hs.eventtap.event')
-
-function systemKey(key, flags)
-    local keydown = event.newSystemKeyEvent(key, true)
-    if flags then
-        keydown:setFlags(flags)
-    end
-    keydown:post()
-    event.newSystemKeyEvent(key, false):post()
-end
+local Commands = dofile('commands.lua')
 
 return {
-    escape = { hs.reload },
+    escape = { Commands.Reload },
 
     left  = {
-        fnutils.partial(Window.move, { 0,   0, 0.5, 1 }),
-        fnutils.partial(Window.moveScreen, 'toWest'),
-        fnutils.partial(Window.move, { 0,   0, 0.5, 1 }, true),
-        fnutils.partial(Window.moveScreen, 'toWest', true),
+        Commands.MoveLeft,
+        Commands.MoveLeftScreen,
+        Commands.MoveAllLeft,
+        Commands.MoveAllLeftScreen,
     },
 
     right = {
-        fnutils.partial(Window.move, { 0.5, 0, 0.5, 1 }),
-        fnutils.partial(Window.moveScreen, 'toEast'),
-        fnutils.partial(Window.move, { 0.5, 0, 0.5, 1 }, true),
-        fnutils.partial(Window.moveScreen, 'toEast', true),
+        Commands.MoveRight,
+        Commands.MoveRightScreen,
+        Commands.MoveAllRight,
+        Commands.MoveAllRightScreen,
     },
 
     up = {
-        fnutils.partial(Window.move, { 0,   0,   1, 1 }),
-        Window.fullScreen,
-        fnutils.partial(Window.move, { 0,   0,   1, 1 }, true),
+        Commands.MoveFull,
+        Commands.FullScreen,
+        Commands.MoveAllFull,
     },
 
     pageup = {
-        fnutils.partial(systemKey, 'SOUND_UP', { alt=true, shift=true }),
-        fnutils.partial(systemKey, 'BRIGHTNESS_UP'),
+        Commands.SoundUp,
+        Commands.BrightnessUp,
     },
 
     pagedown = {
-        fnutils.partial(systemKey, 'SOUND_DOWN', { alt=true, shift=true }),
-        fnutils.partial(systemKey, 'BRIGHTNESS_DOWN'),
+        Commands.SoundDown,
+        Commands.BrightnessDown,
     },
 
-    f15  = { fnutils.partial(systemKey, 'MUTE') }, -- Pause
-    help = { fnutils.partial(systemKey, 'PLAY') }, -- Insert
+    f15  = { Commands.Mute }, -- Pause
+    help = { Commands.Play }, -- Insert
 }
