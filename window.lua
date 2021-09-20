@@ -22,6 +22,9 @@ end
 function exports.moveScreen (direction, all)
     for k, w in pairs(getWindows(all)) do
         local s = w:screen()
+        if w:isFullScreen() then
+            w:setFullScreen(false)
+        end
         w:move(
             w:frame():toUnitRect(s:frame()),
             s[direction](s)
