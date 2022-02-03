@@ -2,7 +2,7 @@ local menubar = require('hs.menubar')
 local Commands = dofile('commands.lua')
 
 menu = menubar.new(true)
-menu:setTitle('foo')
+menu:setTitle('HS')
 menu:setMenu({
     {
         title = 'Resize Terminal',
