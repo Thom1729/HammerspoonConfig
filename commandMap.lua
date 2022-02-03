@@ -1,38 +1,17 @@
+local json = require('hs.json')
+
 local Commands = dofile('commands.lua')
 
-return {
-    escape = { Commands.Reload },
+local raw = json.read('commandMap.json')
 
-    left  = {
-        Commands.MoveLeft,
-        Commands.MoveLeftScreen,
-        Commands.MoveAllLeft,
-        Commands.MoveAllLeftScreen,
-    },
+function map(tbl, callback)
+    local result = {}
+    for k,v in pairs(tbl) do
+        result[k] = callback(v, k)
+    end
+    return result
+end
 
-    right = {
-        Commands.MoveRight,
-        Commands.MoveRightScreen,
-        Commands.MoveAllRight,
-        Commands.MoveAllRightScreen,
-    },
-
-    up = {
-        Commands.MoveFull,
-        Commands.FullScreen,
-        Commands.MoveAllFull,
-    },
-
-    pageup = {
-        Commands.SoundUp,
-        Commands.BrightnessUp,
-    },
-
-    pagedown = {
-        Commands.SoundDown,
-        Commands.BrightnessDown,
-    },
-
-    f15  = { Commands.Mute }, -- Pause
-    help = { Commands.Play }, -- Insert
-}
+return map(raw, function(commands)
+    return map(commands, function(c) return Commands[c] end)
+end)

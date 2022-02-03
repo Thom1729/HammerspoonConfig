@@ -1,0 +1,36 @@
+{
+    "escape": [ "Reload" ],
+
+    "left": [
+        "MoveLeft",
+        "MoveLeftScreen",
+        "MoveAllLeft",
+        "MoveAllLeftScreen",
+    ],
+
+    "right": [
+        "MoveRight",
+        "MoveRightScreen",
+        "MoveAllRight",
+        "MoveAllRightScreen",
+    ],
+
+    "up": [
+        "MoveFull",
+        "FullScreen",
+        "MoveAllFull",
+    ],
+
+    "pageup": [
+        "SoundUp",
+        "BrightnessUp",
+    ],
+
+    "pagedown": [
+        "SoundDown",
+        "BrightnessDown",
+    ],
+
+    "f15": [ "Mute" ],
+    "help": [ "Play" ],
+}
