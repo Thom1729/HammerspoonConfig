@@ -1,8 +1,10 @@
 local alert = require('hs.alert')
+local json = require('hs.json')
+
 local HyperMode = dofile('lib/hyperMode.lua')
 
 local commandMap = dofile('commandMap.lua')
-local characterMap = dofile('characterMap.lua')
+local characterMap = json.read('characterMap.json')
 
 HyperMode.new('f18', function(key, flags)
     local tbl
