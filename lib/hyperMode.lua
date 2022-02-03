@@ -4,9 +4,9 @@ local alert = require('hs.alert')
 local inspect = require('hs.inspect')
 local fnutils = require('hs.fnutils')
 
-exports = {}
+local exports = {}
 
-HyperMode = {}
+local HyperMode = {}
 HyperMode.__index = HyperMode
 
 function exports.new (key, commands)
@@ -28,7 +28,6 @@ end
 function HyperMode:handler (event)
     local key = keycodes.map[event:getKeyCode()]
     local isDown = event:getType() == eventtap.event.types.keyDown
-    local isRepeat = (event:getProperty(eventtap.event.properties.keyboardEventAutorepeat) ~= 0)
 
     if key == self.key then
         self.active = isDown
