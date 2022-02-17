@@ -2,7 +2,7 @@ local fnutils = require('hs.fnutils')
 local Window = dofile('lib/window.lua')
 local ResizeTerminal = dofile('resizeTerminal.lua')
 
-local event = require('hs.eventtap.event')
+local event = require('hs.eventtap').event
 
 function systemKey(key, flags)
     local keydown = event.newSystemKeyEvent(key, true)
